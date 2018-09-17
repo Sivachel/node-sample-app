@@ -2,7 +2,7 @@
 
 ## Description
 
-This app is intended for use with the Sparta Global Devops Stream as a sample app. You can clone the repo and use it as is but no changes will be accepted on this branch. 
+This app is intended for use with the Sparta Global Devops Stream as a sample app. You can clone the repo and use it as is but no changes will be accepted on this branch.
 
 To use the repo within your course you should fork it.
 
@@ -58,6 +58,26 @@ npm test
 
 The test for posts will fail ( as expected ) if the database has not been correctly setup.
 
-
-
-
+## User steps
+- Install vagrant
+- Install VirtualBox
+### Terminal
+- [Bash] varant init ubuntu/xenial64
+- go to atom/vagrantfile
+- delete everything in the vagrant file
+- [Paste this]
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network("private_network", ip: "192.168.10.100")
+  config.hostsupdater.aliases = ["development.local"]
+end
+```
+- [Bash] vagrant up
+- [Bash] vagrant plugin install vagrant-hostsupdater
+- [Bash] vagrant ssh
+- brings up virtual machine
+- [Bash] sudo apt-get update -y
+- [Bash] sudo apt-get install nginx
+- [Bash] exit
+- exits the virtual machine
